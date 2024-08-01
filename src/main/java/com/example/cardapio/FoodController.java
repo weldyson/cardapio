@@ -5,10 +5,8 @@ import food.FoodRepository;
 import food.FoodRequestDTO;
 import food.FoodResponseDTO;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
 import java.util.List;
 
 @RestController
@@ -17,6 +15,8 @@ public class FoodController {
 
     @Autowired
     private FoodRepository repository;
+    @CrossOrigin(origins = "*", allowedHeaders = "*")
+    @PostMapping
 
     public void saveFood(@RequestBody FoodRequestDTO data){
         Food foodData = new Food(data);
@@ -25,6 +25,7 @@ public class FoodController {
 
     }
 
+    @CrossOrigin(origins = "*", allowedHeaders = "*")
     @GetMapping
     public List<FoodResponseDTO> getAll(){
 
